@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            gap : 100px;
+        }
+        .box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .inner_box {
+            border: 2px solid red;
+            height: 50px;
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .mainContainer {
+            width: 300px;
+            border: 1px solid black;
+            padding: 20px;
+        }
+        .outputContainer {
+            width: 100%;
+            height: 70px;
+            background-color: gray;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .bntContainer {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(3 , 1fr);
+            gap: 10px;
+        }
+        .bntContainer button {
+            width: 100%;
+            height: 80px;
+        }
+        .resultBtn {
+            width: 100%;
+            padding: 20px;
+            background-color: black;
+            color: white;
+            margin-top: 10px;
+        }
+        .red {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div  class="header">
+        <div class="box">
+            <div class="inner_box container">
+                <h1 id="min">43</h1>
+            </div>
+            <h1>Min</h1>
+        </div>
+        <div class="box">
+            <div class="inner_box container">
+                <h1 id="max">2019</h1>
+            </div>
+            <h1>Max</h1>
+        </div>
+    </div>
+    <div class="mainContainer">
+        <div class="outputContainer">
+            <h1 id="output">#</h1>
+        </div>
+        <div class="bntContainer">
+            <button value="1">1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button>0</button>
+        </div>
+        <div>
+            <button class="resultBtn" onclick="getResult()">ENTER</button>
+        </div>
+    </div>
+</body>
+<script>
+    let Min = 43;
+    let Max = 2019;
+    let newScore = "";
+    let Buttons = document.querySelectorAll('button');
+
+    Buttons.forEach((button) => {
+        if (button.innerText != 'ENTER') {
+            button.addEventListener('click', () => {
+                newScore += button.innerText;
+                setNewOutput();
+            })
+        }
+    });
+
+    function setNewOutput() {
+        document.getElementById('output').innerText = newScore;
+    }
+
+    function getResult() {
+        if (newScore < Min) {
+            Min = newScore;
+        } else if (newScore > Max) {
+            Max = newScore;
+        }
+        UpdateValue();
+    }
+    function UpdateValue() {
+        document.getElementById('max').innerText = Max;
+        document.getElementById('min').innerText = Min;
+        newScore = ''
+        document.getElementById('output').innerText = '#'
+    }
+
+
+</script>
+</html>
